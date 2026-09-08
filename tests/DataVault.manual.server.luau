@@ -1,19 +1,19 @@
 local ServerScriptService = game:GetService("ServerScriptService")
-local DataVault = require(ServerScriptService.DataVault)
+local NiceSave = require(ServerScriptService.NiceSave)
 
 local function expect(condition: any, message: string)
 	if not condition then
-		error("DataVault test failed: " .. message, 2)
+		error("NiceSave test failed: " .. message, 2)
 	end
 end
 
 local function expectEqual(actual: any, expected: any, message: string)
 	if actual ~= expected then
-		error(string.format("DataVault test failed: %s (expected %s, got %s)", message, tostring(expected), tostring(actual)), 2)
+		error(string.format("NiceSave test failed: %s (expected %s, got %s)", message, tostring(expected), tostring(actual)), 2)
 	end
 end
 
-DataVault.ClearMockStore("DataVaultManual")
+NiceSave.ClearMockStore("NiceSaveManual")
 
 local template = {
 	Coins = 0,
@@ -31,8 +31,8 @@ local commonOptions = {
 	LoadTimeout = 0,
 }
 
-local firstStore = DataVault.new("DataVaultManual", template, commonOptions)
-local secondStore = DataVault.new("DataVaultManual", template, commonOptions)
+local firstStore = NiceSave.new("NiceSaveManual", template, commonOptions)
+local secondStore = NiceSave.new("NiceSaveManual", template, commonOptions)
 
 local first, firstError = firstStore:LoadAsync("Player_1")
 expect(first ~= nil, "first profile should load: " .. tostring(firstError))
@@ -88,15 +88,15 @@ local secondShutdown = secondStore:ShutdownAsync()
 expect(firstShutdown and secondShutdown, "stores should shut down cleanly")
 
 -- Migration test uses another store name so its mock records are isolated.
-DataVault.ClearMockStore("DataVaultMigration")
-local v1Store = DataVault.new("DataVaultMigration", { Diamonds = 0 }, commonOptions)
+NiceSave.ClearMockStore("NiceSaveMigration")
+local v1Store = NiceSave.new("NiceSaveMigration", { Diamonds = 0 }, commonOptions)
 local oldProfile = v1Store:LoadAsync("Player_2")
 expect(oldProfile ~= nil, "v1 profile should load")
 oldProfile.Data.Diamonds = 9
 expect(oldProfile:ReleaseAsync(), "v1 profile should release")
 expect(v1Store:ShutdownAsync(), "v1 store should shut down")
 
-local v2Store = DataVault.new("DataVaultMigration", { Gems = 0 }, {
+local v2Store = NiceSave.new("NiceSaveMigration", { Gems = 0 }, {
 	UseMock = true,
 	AutoSaveInterval = 30,
 	SessionTimeout = 60,
@@ -117,4 +117,4 @@ expectEqual(migrated:GetInfo().SchemaVersion, 2, "migration should update schema
 expect(migrated:ReleaseAsync(), "migrated profile should release")
 expect(v2Store:ShutdownAsync(), "v2 store should shut down")
 
-print("DataVault manual tests passed")
+print("NiceSave manual tests passed")
