@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
 
-local DataVault = require(ServerScriptService.DataVault)
+local NiceSave = require(ServerScriptService.NiceSave)
 
 local TEMPLATE = {
 	Coins = 0,
@@ -12,7 +12,7 @@ local TEMPLATE = {
 	},
 }
 
-local PlayerStore = DataVault.new("PlayerData_v1", TEMPLATE, {
+local PlayerStore = NiceSave.new("PlayerData_v1", TEMPLATE, {
 	SchemaVersion = 1,
 	AutoSaveInterval = 120,
 	SessionTimeout = 600,
