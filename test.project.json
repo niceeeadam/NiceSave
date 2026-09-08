@@ -1,14 +1,14 @@
 {
-  "name": "DataVaultTests",
+  "name": "NiceSave",
   "tree": {
     "$className": "DataModel",
     "ServerScriptService": {
       "$className": "ServerScriptService",
-      "DataVault": {
-        "$path": "src/DataVault.luau"
+      "NiceSave": {
+        "$path": "src/NiceSave.luau"
       },
-      "DataVaultManualTests": {
-        "$path": "tests/DataVault.manual.server.luau"
+      "NiceSaveManualTests": {
+        "$path": "tests/NiceSave.manual.server.luau"
       }
     }
   }
