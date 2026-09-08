@@ -1,5 +1,5 @@
 {
-  "name": "DataVault",
+  "name": "NiceSave",
   "tree": {
     "$className": "DataModel",
     "ServerScriptService": {
