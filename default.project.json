@@ -1,0 +1,12 @@
+{
+  "name": "DataVault",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "DataVault": {
+        "$path": "src/DataVault.luau"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "DataVaultTests",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "DataVault": {
+        "$path": "src/DataVault.luau"
+      },
+      "DataVaultManualTests": {
+        "$path": "tests/DataVault.manual.server.luau"
+      }
+    }
+  }
+}
