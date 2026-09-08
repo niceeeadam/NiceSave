@@ -1,5 +1,3 @@
---!strict
-
 local ServerScriptService = game:GetService("ServerScriptService")
 local DataVault = require(ServerScriptService.DataVault)
 
