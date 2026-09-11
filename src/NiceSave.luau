@@ -1,19 +1,3 @@
---!nonstrict
-
---[[
-	NiceSave
-	An original, session-locked profile store for Roblox DataStoreService.
-
-	Design goals:
-	* one live writer per key (atomic lock + fencing token)
-	* cached, directly editable profile data
-	* periodic autosaves and graceful shutdown
-	* bounded retries with request-budget awareness
-	* schema migrations, reconciliation, metadata, user IDs, and mock mode
-
-	This module must only be required by server Scripts.
-]]
-
 local DataStoreService = game:GetService("DataStoreService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
