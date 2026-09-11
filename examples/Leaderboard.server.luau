@@ -1,8 +1,3 @@
---!strict
-
--- This is a Roblox player-list leaderboard (the built-in `leaderstats` UI).
--- It is not a global, cross-server ranking; that requires OrderedDataStore.
-
 local Players = game:GetService("Players")
 local ServerScriptService = game:GetService("ServerScriptService")
 
