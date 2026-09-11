@@ -1,3 +1,5 @@
+--!strict
+
 local ServerScriptService = game:GetService("ServerScriptService")
 local NiceSave = require(ServerScriptService.NiceSave)
 

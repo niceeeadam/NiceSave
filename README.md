@@ -23,7 +23,16 @@ It is **not** a drop-in replacement for those modules and does not read their st
 
 ## Installation
 
-Copy [`src/NiceSave.luau`](src/NiceSave.luau) into a `ModuleScript` named `NiceSave` under `ServerScriptService`, or sync the included Rojo project.
+Sync the included Rojo project, or create a `ModuleScript` named `NiceSave` under `ServerScriptService` and copy the three source files using this structure:
+
+```text
+ServerScriptService
+└── NiceSave                 ModuleScript — src/NiceSave.luau
+    ├── DataUtils            ModuleScript — src/DataUtils.luau
+    └── Signal               ModuleScript — src/Signal.luau
+```
+
+Game code still imports only the public entry point with `require(ServerScriptService.NiceSave)`. `DataUtils` and `Signal` are implementation details and should not be moved away from their parent.
 
 NiceSave must never be required from a `LocalScript`. In Studio, use `UseMock = true` for safe tests. Only enable Studio API access against a separate test universe; Roblox warns that Studio can otherwise access the same stores as production.
 
@@ -96,6 +105,12 @@ end
 ```
 
 The module binds its own shutdown callback and releases all active profiles. You do not need a second `BindToClose` handler for NiceSave.
+
+## Leaderboard example
+
+[`examples/Leaderboard.server.luau`](examples/Leaderboard.server.luau) creates Roblox's built-in `leaderstats` folder and persists each player's `Coins`, `Wins`, and `Level` inside their NiceSave profile. Put the script in `ServerScriptService` beside the `NiceSave` ModuleScript.
+
+The example includes an `incrementStat` helper for trusted server-side rewards. Keep stat changes on the server; do not accept arbitrary values from a client RemoteEvent. This example controls the stats shown beside players in the player list. A global top-player ranking across servers is a separate feature and requires an `OrderedDataStore`.
 
 ## API
 

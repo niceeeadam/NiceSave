@@ -1,11 +1,17 @@
 {
-  "name": "NiceSave",
+  "name": "NiceSaveTests",
   "tree": {
     "$className": "DataModel",
     "ServerScriptService": {
       "$className": "ServerScriptService",
       "NiceSave": {
-        "$path": "src/NiceSave.luau"
+        "$path": "src/NiceSave.luau",
+        "DataUtils": {
+          "$path": "src/DataUtils.luau"
+        },
+        "Signal": {
+          "$path": "src/Signal.luau"
+        }
       },
       "NiceSaveManualTests": {
         "$path": "tests/NiceSave.manual.server.luau"
